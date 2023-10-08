@@ -2,7 +2,6 @@ package com.company.inventory.controller;
 
 import com.company.inventory.model.Categoria;
 import com.company.inventory.response.CategoriaResponseREST;
-import com.company.inventory.response.ResponseRest;
 import com.company.inventory.services.ICategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +57,12 @@ public class CategoriaRestController {
 	@PutMapping("/categories/{id}")
 	public ResponseEntity<CategoriaResponseREST> update(@RequestBody Categoria categoria, @PathVariable Long id){
 		ResponseEntity<CategoriaResponseREST> response = servicioCategorias.update(categoria, id);
+		return response;
+	}
+
+	@DeleteMapping("/categories/{id}")
+	public ResponseEntity<CategoriaResponseREST> delete(@PathVariable Long id){
+		ResponseEntity<CategoriaResponseREST> response = servicioCategorias.deleteById(id);
 		return response;
 	}
 }
